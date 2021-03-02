@@ -20,16 +20,16 @@ class dataCollector(Thread):
         self.stopped = event
 
     def initialize(self, frequency, period, interval, prepost, delta, startDate, pystorePath, storeName, symbolName, collectionName):
-        self.frequency = frequency 
-        self.period = period 
-        self.interval = interval 
-        self.prepost = prepost 
-        self.delta = delta 
-        self.startDate = startDate 
-        self.pystorePath = pystorePath 
-        self.storeName = storeName 
-        self.symbolName = symbolName 
-        self.collectionName = collectionName 
+        self.frequency = frequency
+        self.period = period
+        self.interval = interval
+        self.prepost = prepost
+        self.delta = delta
+        self.startDate = startDate
+        self.pystorePath = pystorePath
+        self.storeName = storeName
+        self.symbolName = symbolName
+        self.collectionName = collectionName
 
     def download_stock(self, stock, period, interval, prepost, collection, startDate, delta):
 
@@ -69,7 +69,7 @@ class dataCollector(Thread):
         except Exception as e:
             # bad_names.append(stock)
             # print('Bad: %s' % (stock))
-            print (e) 
+            print(e)
             return None
             pass
 
@@ -88,9 +88,8 @@ class dataCollector(Thread):
         # item.
         # collection.append(stock, stock_df)
 
-
     def run(self):
-        ## Thread configurations:
+        # Thread configurations:
         # Download 1d 3y
         # frequency = 1  # seconds
         # period = '5d'
@@ -103,16 +102,16 @@ class dataCollector(Thread):
         # symbolName = 'NASDAQ.SYMBOLS'
         # collectionName = 'NASDAQ.D1'
 
-        frequency = self.frequency 
-        period = self.period 
-        interval = self.interval 
-        prepost = self.prepost 
-        delta = self.delta 
+        frequency = self.frequency
+        period = self.period
+        interval = self.interval
+        prepost = self.prepost
+        delta = self.delta
         startDate = parser.parse(self.startDate)
-        pystorePath = self.pystorePath 
-        storeName = self.storeName 
-        symbolName = self.symbolName 
-        collectionName = self.collectionName 
+        pystorePath = self.pystorePath
+        storeName = self.storeName
+        symbolName = self.symbolName
+        collectionName = self.collectionName
 
         # Set storage path
         pystore.set_path(pystorePath)
@@ -129,7 +128,6 @@ class dataCollector(Thread):
         stockList = stockList[:100]
         stockList.remove('BRK.B')
         stockList.remove('BF.B')
-
 
         print(stockList)
 
@@ -167,7 +165,8 @@ class dataCollector(Thread):
             #         pass
 
             dask.compute(*res)
-            print(collectionName, period, len(stockList), 'stock took ', datetime.now()-now_time)
+            print(collectionName, period, len(stockList),
+                  'stock took ', datetime.now()-now_time)
 
 
 # Debugging functions ()
